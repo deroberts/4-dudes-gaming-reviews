@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 //import { Container, AppBar, Typography } from '@material-ui/core';
-import { Grommet, Heading, Image, Anchor, Nav } from 'grommet';
+import { Grommet, Heading, Image, Anchor, Nav, Box } from 'grommet';
+import { fetchPopularGames } from './utils/Rawgapi';
+import GameCard from './components/GameCard';
 import cover from './images/cover.png'
 
 const items = [
@@ -21,6 +23,15 @@ const items = [
 // }
 
 function App() {
+  const [popularGames, setPopularGames] = React.useState([]);
+  
+  useEffect(() => {
+    fetchPopularGames()
+      .then(data => setPopularGames(data))
+      .catch(err => console.log(err));
+  }, []);
+  
+  
   return (
     <Grommet className="App">
       <Heading size='large' color='#00739D'>
@@ -31,6 +42,13 @@ function App() {
        <Anchor href={item.href} label={item.label} key={item.label} />
      ))}
    </Nav>
+   <Box direction="row" wrap justify="center">
+      {popularGames.map((game) => (
+        <Box key={game.id} margin="small">
+          <GameCard game={game} />
+          </Box>
+      ))}
+   </Box>
   <Image fit="cover" src={cover} />
       
     </Grommet>
