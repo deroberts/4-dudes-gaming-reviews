@@ -1,15 +1,41 @@
 import React from 'react';
-import { Container, AppBar, Typography } from '@material-ui/core';
-import cover from './images/cover.jpeg';
-const App = () => {
+//import { Container, AppBar, Typography } from '@material-ui/core';
+import { Grommet, Heading, Image, Anchor, Nav } from 'grommet';
+import cover from './images/cover.png'
+
+const items = [
+ { label: 'About', href: '#' },
+ { label: 'Login', href: '#' },
+ { label: 'Logout', href: '#' },
+ { label: 'Game', href: '#' },
+];
+// const App = () => {
+//   return (
+//    <Container maxidth="lg">
+//     <AppBar postion="static" color="inherit">
+//       <Typography variant="h2" align="center">4-dudes-gaming-reviews</Typography>
+//       <img src={cover} alt="4-dudes-gaming-reviews" height="60" />
+//     </AppBar>
+//    </Container>
+//   );
+// }
+
+function App() {
   return (
-   <Container maxidth="lg">
-    <AppBar postion="static" color="inherit">
-      <Typography variant="h2" align="center">4-dudes-gaming-reviews</Typography>
-      <img src={cover} alt="4-dudes-gaming-reviews" height="60" />
-    </AppBar>
-   </Container>
+    <Grommet className="App">
+      <Heading size='large' color='#00739D'>
+      4-dudes-gaming-reviews
+      </Heading>
+      <Nav direction="row">
+     {items.map((item) => (
+       <Anchor href={item.href} label={item.label} key={item.label} />
+     ))}
+   </Nav>
+  <Image fit="cover" src={cover} />
+      
+    </Grommet>
   );
+
 }
 // import {
 //   ApolloClient,
