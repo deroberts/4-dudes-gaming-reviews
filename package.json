@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
-    "material": "^0.5.3"
+    "buffer": "^6.0.3",
+    "material": "^0.5.3",
+    "node-fetch": "^3.3.0"
   }
 }
