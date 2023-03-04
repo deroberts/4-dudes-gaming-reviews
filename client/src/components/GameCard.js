@@ -7,9 +7,15 @@ const GameCard = ({ game }) => {
   
   
   return (
-      <>
       
-        <Card key={game.id} height="medium">
+      <div style={{display: 'flex', flexWrap: "wrap" }}>
+        <Card 
+          key={game.id} 
+          height="medium"
+          width={{ max: "small" }}
+          margin="medium"
+          >
+
           <CardHeader pad="medium">
             <Text size="medium" weight="bold">
               {game.name}
@@ -25,8 +31,7 @@ const GameCard = ({ game }) => {
             </Text>
           </CardFooter>
         </Card>
-
-    </>
+      </div>
   );
 };
 
