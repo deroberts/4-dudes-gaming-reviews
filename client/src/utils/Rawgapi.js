@@ -9,6 +9,12 @@ export const fetchPopularGames = async () => {
   const data = await response.json();
   return data.results;
 }
-
-
+// Function to search games by name 
+export const searchGameByName = async (name) => {
+    const url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${name}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.results;
+  }
+  
 
