@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Grommet, Heading, Image, Anchor, Nav, Box } from 'grommet';
 import { fetchPopularGames } from './utils/Rawgapi';
 import GameCard from './components/GameCard';
+import SearchGame from './components/SearchGame';
 import cover from './images/cover.png'
 
 const items = [
@@ -49,6 +50,7 @@ function App() {
           </Box>
       ))}
    </Box>
+   <SearchGame />
   <Image fit="cover" src={cover} />
       
     </Grommet>
