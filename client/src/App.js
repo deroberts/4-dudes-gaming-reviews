@@ -25,37 +25,61 @@ const items = [
 
 function App() {
   const [popularGames, setPopularGames] = React.useState([]);
+  const [darkMode, setDarkMode] = React.useState(false);
   
   useEffect(() => {
     fetchPopularGames()
       .then(data => setPopularGames(data))
       .catch(err => console.log(err));
   }, []);
-  
+
+  // adding dark mode toggle
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const theme = {
+    global: {
+      font: {
+        family: 'Roboto',
+      },
+      colors: {
+        brand: '#00739D',
+        background: {
+          light: '#FFFFFF',
+          dark: '#1A1A1A',
+        },
+        text: {
+          light: '#333333',
+          dark: '#FFFFFF',
+        },
+      },
+    },
+  };  
   
   return (
-    <Grommet className="App">
-      <Heading size='large' color='#00739D'>
+    <Grommet theme={theme} className="App" themeMode={darkMode ? 'dark' : 'light'}>
+      <Heading size='large' color='brand'>
       4-dudes-gaming-reviews
       </Heading>
       <Nav direction="row">
-     {items.map((item) => (
-       <Anchor href={item.href} label={item.label} key={item.label} />
-     ))}
-   </Nav>
-   <Box direction="row" wrap justify="center">
-      {popularGames.map((game) => (
-        <Box key={game.id} margin="small">
-          <GameCard game={game} />
+        <Anchor href='#' label='About' />
+        <Anchor href='#' label='Login' />
+        <Anchor href='#' label='Logout' />
+        <Anchor href='#' label='Game' />
+      </Nav>
+      <Box direction="row" wrap justify="center">
+        {popularGames.map((game) => (
+          <Box key={game.id} margin="small">
+            <GameCard game={game} />
           </Box>
-      ))}
-   </Box>
-   <SearchGame />
-  <Image fit="cover" src={cover} />
-      
+        ))}
+      </Box>
+      <SearchGame />
+      <Image fit="cover" src={cover} />
+      <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
     </Grommet>
   );
-
 }
 // import {
 //   ApolloClient,
