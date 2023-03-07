@@ -11,7 +11,7 @@ type Profile {
 
   type Auth {
     token: ID!
-    user: User
+    profile: Profile
   }
 
   type Query {
@@ -23,7 +23,7 @@ type Profile {
 
   type Mutation {
     addProfile(name: String!, email: String!, password: String!): Auth
-    // login(email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth 
     removeProfile: Profile
   }
 `;
