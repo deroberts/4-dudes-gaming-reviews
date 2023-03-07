@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Grommet, Heading, Image, Anchor, Nav, Box } from "grommet";
+import { Grommet, Heading, Image, Anchor, Nav, Carousel, Box } from "grommet";
 import { fetchPopularGames } from "./utils/Rawgapi";
 import GameCard from "./components/GameCard";
 import SearchGame from "./components/SearchGame";
 import cover from "./images/cover.png";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import {
   ApolloClient,
@@ -82,6 +84,12 @@ function App() {
             <Route 
               path="/signup"
               element={<Signup />}
+            />
+            <Route path="/login"
+              element={<Login />}
+            />
+            <Route path="/me"
+              element={<Profile />}
             />
           </Routes>
           </div>

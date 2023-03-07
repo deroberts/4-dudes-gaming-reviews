@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Collapsible, Heading, Grommet, Layer, ResponsiveContext } from 'grommet';
 import { FormClose, Menu } from 'grommet-icons';
+import Auth from '../utils/auth';
 
 const AppNavbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  // need event to log out
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
 
   return (
     <Grommet>
@@ -17,6 +23,11 @@ const AppNavbar = () => {
             4-dudes-gaming-reviews
           </Heading>
         </Link>
+        {Auth.loggedIn() && (
+          <Button onClick={logout}>
+            Logout
+          </Button>
+        )}
       </Box>
       <ResponsiveContext.Consumer>
         {(size) =>
@@ -28,24 +39,39 @@ const AppNavbar = () => {
                 </Button>
                 <Link to="Home">HOME</Link>
                 <Link to="Signup">SIGNUP</Link>
+                <Link to="Login">LOGIN</Link>
+                <Link to="Me">Profile</Link>
                 <Link to="About">ABOUT</Link>
                 <Link to="Explore">EXPLOOOOOREEEEEEE</Link>
+                {Auth.loggedIn() && (
+                  <Button onClick={logout}>Logout</Button>
+                )}
               </Box>
             </Layer>
           ) : (
-            <Collapsible direction="horizontal" open={showSidebar}>
-              <Box background="brand" fill>
-                <Link to="Home">HOME</Link>
-                <Link to="Signup">SIGNUP</Link>
-                <Link to="About">ABOUT</Link>
-                <Link to="Explore">EXPLOOOOOREEEEEEE</Link>
-              </Box>
-            </Collapsible>
-          )
+              <Collapsible direction="horizontal" open={showSidebar}>
+                <Box background="brand" fill>
+                  <Link to="Home">HOME</Link>
+                  <Link to="Signup">SIGNUP</Link>
+                  <Link to="Login">LOGIN</Link>
+                  <Link to="Me">Profile</Link>
+                  <Link to="About">ABOUT</Link>
+                  <Link to="Explore">EXPLOOOOOREEEEEEE</Link>
+              {Auth.loggedIn() && (
+                <Button onClick={logout}>Logout</Button>
+                  
+                )}
+                </Box>
+              </Collapsible>
+                
+            )
         }
+
+
       </ResponsiveContext.Consumer>
     </Grommet>
   );
 };
 
 export default AppNavbar;
+

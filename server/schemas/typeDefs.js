@@ -1,12 +1,20 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
+type GameRating {
+  gameId: ID!
+  value: Int!
+  user: ID!
+}
+
+
 type Profile {
   _id: ID
   name: String
   email: String
   password: String
-  skills: [String]!
+  gameRatings: [GameRating]!
 }
 
   type Auth {
@@ -25,6 +33,7 @@ type Profile {
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth 
     removeProfile: Profile
+    addGameRating(gameId: ID!, value: Int!): Profile
   }
 `;
 
