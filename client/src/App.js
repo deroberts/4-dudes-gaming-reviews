@@ -5,7 +5,7 @@ import { fetchPopularGames } from "./utils/Rawgapi";
 import GameCard from "./components/GameCard";
 import SearchGame from "./components/SearchGame";
 import cover from "./images/cover.png";
-import Auth from "./pages/Auth";
+import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import {
   ApolloClient,
@@ -77,9 +77,14 @@ function App() {
           className="App"
           themeMode={darkMode ? "dark" : "light"}
         >
-          {/* <Heading size="large" color="brand">
-            4-dudes-gaming-reviews
-          </Heading> */}
+            <div className="container">
+           <Routes>
+            <Route 
+              path="/signup"
+              element={<Signup />}
+            />
+          </Routes>
+          </div>
           <Navbar />
           <Box direction="row" wrap justify="center">
             {popularGames.map((game) => (
@@ -89,9 +94,7 @@ function App() {
             ))}
           </Box>
           <SearchGame />
-          <Routes>
-            <Route exact path="/Auth" element={<Auth />} />
-          </Routes>
+         
           <Image fit="cover" src={cover} />
           <button onClick={toggleDarkMode}>
             {darkMode ? <Sun /> : <Moon />}
