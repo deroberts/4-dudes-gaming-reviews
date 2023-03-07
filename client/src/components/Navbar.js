@@ -27,7 +27,7 @@ const AppNavbar = () => {
                   <FormClose color="light-1" />
                 </Button>
                 <Link to="Home">HOME</Link>
-                <Link to="Auth">SIGNUP/LOGIN</Link>
+                <Link to="Signup">SIGNUP</Link>
                 <Link to="About">ABOUT</Link>
                 <Link to="Explore">EXPLOOOOOREEEEEEE</Link>
               </Box>
@@ -36,7 +36,7 @@ const AppNavbar = () => {
             <Collapsible direction="horizontal" open={showSidebar}>
               <Box background="brand" fill>
                 <Link to="Home">HOME</Link>
-                <Link to="Auth">SIGNUP/LOGIN</Link>
+                <Link to="Signup">SIGNUP</Link>
                 <Link to="About">ABOUT</Link>
                 <Link to="Explore">EXPLOOOOOREEEEEEE</Link>
               </Box>
