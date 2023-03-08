@@ -1,9 +1,11 @@
-const {Schema} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const GameSchema = new Schema({
-    gameTitle: {
-        type: String,
-        required: true,
-        trim: true,
-    },
+    name: String,
+    rating: Number,
+    released: String,
 });
+
+const Game = model('Game', GameSchema);
+
+module.exports = Game;

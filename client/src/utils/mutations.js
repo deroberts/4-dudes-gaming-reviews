@@ -12,7 +12,6 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -21,6 +20,17 @@ export const LOGIN_USER = gql`
         _id
         name
       }
+    }
+  }
+`;
+
+export const ADD_GAME = gql`
+  mutation AddGame($name: String!, $rating: Float!) {
+    addGame(name: $name, rating: $rating) {
+      _id
+      name
+      released
+      rating
     }
   }
 `;
