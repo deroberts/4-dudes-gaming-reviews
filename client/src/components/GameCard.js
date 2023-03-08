@@ -1,13 +1,36 @@
-import { Card, CardBody, CardFooter, CardHeader, Image, Text } from "grommet";
-import { Star } from "grommet-icons";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Image,
+  Text,
+} from "grommet";
 import { useEffect, useState } from "react";
-import { fetchPopularGames } from "../utils/Rawgapi";
+import { useMutation } from "@apollo/client";
+import { ADD_GAME } from "../utils/mutations";
 
 const GameCard = ({ game }) => {
-  const [rating, setRating] = useState(0);
+  const [addGame] = useMutation(ADD_GAME);
 
-  const handleRating = (value) => {
-    setRating(value);
+  const handleAddGame = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e.target);
+    try {
+      console.log(game.id);
+      const updatedProfile = await addGame({
+        variables: {
+          name: game.name,
+          released: game.released,
+          rating: game.rating,
+        },
+      });
+      console.log(updatedProfile);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -28,18 +51,17 @@ const GameCard = ({ game }) => {
         </CardBody>
         <CardFooter pad={{ horizontal: "medium", vertical: "small" }}>
           <Text size="small">{game.released}</Text>
-            <Text size="small" weight="bold">Community Rating:  
-              {game.rating}/5
-            </Text>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              Your Rating:
-            {[1, 2, 3, 4, 5].map((value) => (
-              <Star
-                key={value}
-                color={value <= rating ? "orange" : "light-4"}
-                onClick={() => handleRating(value)}
-              />
-            ))}
+          <Text size="small" weight="bold">
+            Community Rating:
+            {game.rating}/5
+          </Text>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              label="Add Game"
+              data-id={game.id}
+              primary={true}
+              onClick={handleAddGame}
+            />
           </div>
         </CardFooter>
       </Card>

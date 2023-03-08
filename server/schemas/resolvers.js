@@ -1,7 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Profile } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const Game = require('../models/Game');
+//  REMEMBER THAT user is stored in the context of 'user'. and in the auth.js file.
 const resolvers = {
   Query: {
     profiles: async () => {
@@ -44,8 +45,6 @@ const resolvers = {
       return { token, profile };
     },
 
-    // Add a third argument to the resolver to access data in our `context`
-
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
@@ -53,8 +52,18 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // Make it so a logged in user can only remove a skill from their own profile
 
+    addGame: async (parent, args, context) => {
+      if (context.user) {
+      console.log(context.user);
+      const updatedProfile = await Profile.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { games: args.gameId } },
+      );
+      return updatedProfile;
+    }
+    throw new AuthenticationError('You need to be logged in!');
+  }
   },
 };
 

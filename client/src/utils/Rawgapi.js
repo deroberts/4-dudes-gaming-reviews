@@ -8,7 +8,16 @@ export const fetchPopularGames = async () => {
   const url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&dates=${currentYear}-01-01,${currentYear}-12-31&ordering=-rating&page_size=4`;
   const response = await fetch(url);
   const data = await response.json();
-  return data.results;
+  const games = data.results.map((game) => {
+    return {
+      id: game.id,
+      name: game.name,
+      background_image: game.background_image,
+      released: game.released,
+      rating: game.rating,
+    };
+  });
+  return games;
 };
 
 // Function to search games by name 
