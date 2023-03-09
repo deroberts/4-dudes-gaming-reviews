@@ -6,6 +6,7 @@ import GameCard from "./components/GameCard";
 import SearchGame from "./components/SearchGame";
 import cover from "./images/cover.png";
 import Auth from "./pages/Auth";
+import SignupForm from "./components/SignupForm";
 import Navbar from "./components/Navbar";
 import {
   ApolloClient,
@@ -15,6 +16,8 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { Sun, Moon } from "grommet-icons";
+
+import PostForm from "./components/Form/Form"
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -90,7 +93,8 @@ function App() {
           </Box>
           <SearchGame />
           <Routes>
-            <Route exact path="/Auth" element={<Auth />} />
+            <Route exact path="/Auth" element={<SignupForm />} />
+            <Route exact path="/form" element={<PostForm />}/>
           </Routes>
           <Image fit="cover" src={cover} />
           <button onClick={toggleDarkMode}>
