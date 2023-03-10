@@ -14,7 +14,7 @@ type Profile {
   name: String
   email: String
   password: String
-  games: [ID]
+  games: [Game]
 }
 
   type Auth {
@@ -39,7 +39,7 @@ type Profile {
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth 
     removeProfile: Profile
-    addGame(name: String!, rating: Float, released: String ): Game
+    addGame(gameId: ID!, name: String!, rating: Float, released: String ): Profile
   }
 `;
 

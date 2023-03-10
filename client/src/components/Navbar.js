@@ -37,12 +37,12 @@ const AppNavbar = () => {
                 <Button onClick={() => setShowSidebar(false)}>
                   <FormClose color="light-1" />
                 </Button>
-                <Link to="Home">HOME</Link>
-                <Link to="Signup">SIGNUP</Link>
-                <Link to="Login">LOGIN</Link>
-                <Link to="Me">Profile</Link>
-                <Link to="About">ABOUT</Link>
-                <Link to="Explore">EXPLOOOOOREEEEEEE</Link>
+                <Link to="/">HOME</Link>
+                <Link to="/signup">SIGNUP</Link>
+                <Link to="/login">LOGIN</Link>
+                <Link to="/me">Profile</Link>
+                <Link to="/about">ABOUT</Link>
+                <Link to="/explore">EXPLOOOOOREEEEEEE</Link>
                 {Auth.loggedIn() && (
                   <Button onClick={logout}>Logout</Button>
                 )}
@@ -51,12 +51,12 @@ const AppNavbar = () => {
           ) : (
               <Collapsible direction="horizontal" open={showSidebar}>
                 <Box background="brand" fill>
-                  <Link to="Home">HOME</Link>
-                  <Link to="Signup">SIGNUP</Link>
-                  <Link to="Login">LOGIN</Link>
-                  <Link to="Me">Profile</Link>
-                  <Link to="About">ABOUT</Link>
-                  <Link to="Explore">EXPLOOOOOREEEEEEE</Link>
+                <Link to="/">HOME</Link>
+                <Link to="/signup">SIGNUP</Link>
+                <Link to="/login">LOGIN</Link>
+                <Link to="/me">Profile</Link>
+                <Link to="/about">ABOUT</Link>
+                <Link to="/explore">EXPLOOOOOREEEEEEE</Link>
               {Auth.loggedIn() && (
                 <Button onClick={logout}>Logout</Button>
                   

@@ -6,6 +6,5 @@ const GameSchema = new Schema({
     released: String,
 });
 
-const Game = model('Game', GameSchema);
 
-module.exports = Game;
+module.exports = GameSchema;

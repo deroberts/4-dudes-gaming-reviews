@@ -25,12 +25,16 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_GAME = gql`
-  mutation AddGame($name: String!, $rating: Float!) {
-    addGame(name: $name, rating: $rating) {
+  mutation AddGame($gameId: ID!, $name: String!,  $released: String!, $rating: Float!) {
+    addGame(gameId: $gameId, name: $name, released: $released, rating: $rating) {
       _id
       name
-      released
-      rating
+      games {
+        name
+        released
+        rating
+      }
+
     }
   }
 `;
