@@ -1,4 +1,118 @@
-.navbar {
-    display: flex;
-    flex-flow: column;
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap");
+
+* {
+  font-family: "Tilt Warp", cursive;
+  letter-spacing: 1px;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  text-align: center;
+}
+ul > li {
+  margin-top: 6px;
+}
+
+.title-box {
+  display: flex;
+}
+
+.theme-switch-btn {
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 0.66rem;
+  margin-left: auto;
+}
+.theme-switch-btn:hover {
+  cursor: pointer;
+}
+.menu-toggle-btn {
+  margin-right: 1rem;
+}
+
+.navlink-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 3rem;
+  text-align: right;
+}
+.navlink-container > a {
+  margin: 0.11rem 0;
+}
+
+.collapse-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+}
+form > input {
+  border-radius: 3px;
+  padding: 0.33rem 1rem;
+}
+form > button {
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+h4 {
+  text-align: center;
+}
+
+.pop-game-container {
+  padding: 2rem;
+  width: 30rem;
+}
+
+.pop-game-card {
+  margin: 1rem;
+}
+
+.search-game-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 50%;
+  margin: 3rem auto;
+}
+
+.search-game-container > button {
+  margin-top: 1rem;
+  width: 9rem;
+}
+
+/* .large-game-card-box {
+
+} */
+
+.large-game-card {
+  margin: 1rem auto;
+  width: 91vw;
+}
+.large-game-card:nth-child(2n + 0) > h1 {
+  text-align: right;
+}
+.large-game-card:nth-child(2n + 0) > div {
+  margin-left: auto;
+  text-align: right;
+}
+.footer {
+  background-color: white;
 }

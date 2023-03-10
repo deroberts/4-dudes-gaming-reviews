@@ -1,16 +1,10 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-
+import React from "react";
 
 const Home = () => {
- 
-
   return (
     <main>
       <div className="">
-        <div className="">
-         hello
-        </div>
+        <div className="">hello</div>
       </div>
     </main>
   );
