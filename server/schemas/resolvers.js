@@ -10,7 +10,7 @@ const resolvers = {
     },
 
     profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+      return Profile.findOne({ _id: profileId }).populate('games');
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
@@ -58,7 +58,9 @@ const resolvers = {
       console.log(context.user);
       const updatedProfile = await Profile.findOneAndUpdate(
         { _id: context.user._id },
-        { $addToSet: { games: args.gameId } },
+        { $push: { games: { ...args } }},
+        { new: true }
+        
       );
       return updatedProfile;
     }

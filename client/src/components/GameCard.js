@@ -22,6 +22,7 @@ const GameCard = ({ game }) => {
       console.log(game.id);
       const updatedProfile = await addGame({
         variables: {
+          gameId: game.id,
           name: game.name,
           released: game.released,
           rating: game.rating,

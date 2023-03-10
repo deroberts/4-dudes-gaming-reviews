@@ -91,6 +91,7 @@ function App() {
           className="App"
           themeMode={darkMode ? "dark" : "light"}
         >
+          <Navbar />
           <div className="container">
             <Routes>
               <Route path="/signup" element={<Signup />} />
@@ -98,7 +99,6 @@ function App() {
               <Route path="/me" element={<Profile />} />
             </Routes>
           </div>
-          <Navbar />
           <Box direction="row" wrap justify="center">
             {popularGames.map((game) => (
               <Box key={game.id} margin="small">
