@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const GameSchema = require('./Game');
 const userSchema = new Schema({
   name: {
     type: String,
@@ -19,10 +19,9 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  games: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Game',
-  }]
+  games: [
+    GameSchema 
+  ]
 
   
 });
