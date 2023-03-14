@@ -102,8 +102,11 @@ h4 {
 
 } */
 
+.large-game-card-box {
+  margin-bottom: 3rem;
+}
 .large-game-card {
-  margin: 1rem auto;
+  margin: 0 auto 3rem;
   width: 91vw;
 }
 .large-game-card:nth-child(2n + 0) > h1 {
