@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { TextInput, Button } from 'grommet';
-import { searchGameByName } from '../utils/Rawgapi';
+import React, { useState } from "react";
+import { TextInput, Button } from "grommet";
+import { searchGameByName } from "../utils/Rawgapi";
 
 const Search = () => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [showAll, setShowAll] = useState(false);
 
@@ -14,12 +14,12 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <div className="search-game-container">
       <TextInput
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
-      <Button label="Search/Hide" onClick={handleSearch} />
+      <Button label="Search" onClick={handleSearch} />
       <ul>
         {results.slice(0, 3).map((result) => (
           <li key={result.id}>{result.name}</li>
@@ -27,9 +27,10 @@ const Search = () => {
         {!showAll && results.length > 3 && (
           <Button label="Show more" onClick={() => setShowAll(true)} />
         )}
-        {showAll && results.slice(3).map((result) => (
-          <li key={result.id}>{result.name}</li>
-        ))}
+        {showAll &&
+          results
+            .slice(3)
+            .map((result) => <li key={result.id}>{result.name}</li>)}
       </ul>
     </div>
   );

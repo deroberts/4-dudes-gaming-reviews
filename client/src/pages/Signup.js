@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useMutation } from '@apollo/client';
-import { ADD_PROFILE } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { ADD_PROFILE } from "../utils/mutations";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: ""
   });
   const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
 
@@ -20,7 +20,7 @@ const Signup = () => {
 
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -31,7 +31,7 @@ const Signup = () => {
 
     try {
       const { data } = await addProfile({
-        variables: { ...formState },
+        variables: { ...formState }
       });
 
       Auth.login(data.addProfile.token);
@@ -48,7 +48,7 @@ const Signup = () => {
           <div className="card-body">
             {data ? (
               <p>
-                Success! You may now head{' '}
+                Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
@@ -79,14 +79,13 @@ const Signup = () => {
                 />
                 <button
                   className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                   type="submit"
                 >
                   Submit
                 </button>
               </form>
             )}
-
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
                 {error.message}

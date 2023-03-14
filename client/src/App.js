@@ -4,14 +4,11 @@ import {
   Grommet,
   Heading,
   Image,
-  Text,
-  Nav,
-  Carousel,
   Box,
   Card,
   CardBody,
   Paragraph,
-  ThumbsRating,
+  ThumbsRating
 } from "grommet";
 import { fetchPopularGames } from "./utils/Rawgapi";
 import GameCard from "./components/GameCard";
@@ -25,13 +22,13 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  createHttpLink
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { Sun, Moon } from "grommet-icons";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "/graphql"
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -39,14 +36,14 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
+      authorization: token ? `Bearer ${token}` : ""
+    }
   };
 });
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 function App() {
@@ -59,7 +56,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  // adding dark mode toggle
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -67,20 +63,20 @@ function App() {
   const theme = {
     global: {
       font: {
-        family: "Roboto",
+        family: "Roboto"
       },
       colors: {
         brand: "#00739D",
         background: {
           light: "#FFFFFF",
-          dark: "#1A1A1A",
+          dark: "#1A1A1A"
         },
         text: {
           light: "#333333",
-          dark: "#FFFFFF",
-        },
-      },
-    },
+          dark: "#FFFFFF"
+        }
+      }
+    }
   };
 
   return (
@@ -91,6 +87,9 @@ function App() {
           className="App"
           themeMode={darkMode ? "dark" : "light"}
         >
+          <button className="theme-switch-btn" onClick={toggleDarkMode}>
+            {darkMode ? <Sun /> : <Moon />}
+          </button>
           <Navbar />
           <div className="container">
             <Routes>
@@ -99,27 +98,27 @@ function App() {
               <Route path="/me" element={<Profile />} />
             </Routes>
           </div>
-          <Box direction="row" wrap justify="center">
+          <Box
+            direction="row"
+            wrap
+            justify="center"
+            style={{ marginTop: "3rem" }}
+          >
             {popularGames.map((game) => (
-              <Box key={game.id} margin="small">
-                <GameCard game={game} />
+              <Box key={game.id} margin="small" className="pop-game-container">
+                <GameCard game={game} className="pop-game-card" />
               </Box>
             ))}
           </Box>
           <SearchGame />
 
-          <button onClick={toggleDarkMode}>
-            {darkMode ? <Sun /> : <Moon />}
-          </button>
-          <Box
-            justify="evenly"
-            align="center"
-            direction="row"
-            pad="xlarge"
-            background="brand"
-            round="large"
-          >
-            <Card pad="xlarge" background="dark-1" gap="large">
+          <Box className="large-game-card-box">
+            <Card
+              pad="xlarge"
+              background="dark-1"
+              gap="large"
+              className="large-game-card"
+            >
               <Heading margin="none">Hollow Knight: Silksong</Heading>
               <CardBody>
                 <Paragraph margin="none">
@@ -139,7 +138,12 @@ function App() {
               <ThumbsRating />
             </Card>
 
-            <Card pad="xlarge" background="dark-1" gap="large">
+            <Card
+              pad="xlarge"
+              background="dark-1"
+              gap="large"
+              className="large-game-card"
+            >
               <Heading margin="none">Marvel's Spider-Man 2</Heading>
               <CardBody>
                 <Paragraph margin="none">
@@ -157,13 +161,9 @@ function App() {
               <ThumbsRating />
             </Card>
           </Box>
-          <Box align="center" height="small">
+          <Box align="center" height="small" className="footer">
             <Image fit="cover" src={cover} />
           </Box>
-
-          <button onClick={toggleDarkMode}>
-            {darkMode ? <Sun /> : <Moon />}
-          </button>
         </Grommet>
       </Router>
     </ApolloProvider>
