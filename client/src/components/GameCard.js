@@ -5,9 +5,8 @@ import {
   CardFooter,
   CardHeader,
   Image,
-  Text,
+  Text
 } from "grommet";
-import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_GAME } from "../utils/mutations";
 
@@ -17,16 +16,14 @@ const GameCard = ({ game }) => {
   const handleAddGame = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(e.target);
     try {
-      console.log(game.id);
       const updatedProfile = await addGame({
         variables: {
           gameId: game.id,
           name: game.name,
           released: game.released,
-          rating: game.rating,
-        },
+          rating: game.rating
+        }
       });
       console.log(updatedProfile);
     } catch (err) {
@@ -36,12 +33,7 @@ const GameCard = ({ game }) => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      <Card
-        key={game.id}
-        height="medium"
-        width={{ max: "medium" }}
-        margin="medium"
-      >
+      <Card key={game.id}>
         <CardHeader pad="medium">
           <Text size="medium" weight="bold">
             {game.name}
